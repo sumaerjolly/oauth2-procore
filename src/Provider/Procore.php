@@ -36,7 +36,7 @@ class Procore extends AbstractProvider
 
   public function getBaseAccessTokenUrl(array $params)
   {
-    return 'https://login.procore.com/oauth/token';
+    return 'https://login-sandbox.procore.com/oauth/token';
   }
 
   public function getResourceOwnerDetailsUrl(AccessToken $token)
