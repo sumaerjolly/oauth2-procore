@@ -49,11 +49,6 @@ class Procore extends AbstractProvider
     return [];
   }
 
-  protected function getScopeSeparator()
-  {
-    return ' ';
-  }
-
   public function checkResponse(ResponseInterface $response, $data)
   {
     if (!empty($data['errors'])) {
@@ -66,20 +61,5 @@ class Procore extends AbstractProvider
   protected function createResourceOwner(array $response, AccessToken $token)
   {
     return new ProcoreResourceOwner($response);
-  }
-
-  /**
-   * Returns a prepared request for requesting an access token.
-   *
-   * @param array $params Query string parameters
-   * @return Psr\Http\Message\RequestInterface
-   */
-  protected function getAccessTokenRequest(array $params)
-  {
-    $request = parent::getAccessTokenRequest($params);
-    $uri = $request->getUri()
-      ->withUserInfo($this->clientId, $this->clientSecret);
-
-    return $request->withUri($uri);
   }
 }
